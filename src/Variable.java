@@ -1,4 +1,4 @@
-public class Variable extends Expression {
+public class Variable implements Expression {
     private final String name_; // имя переменной
     public Variable(String name) {
         name_ = name;
@@ -9,7 +9,12 @@ public class Variable extends Expression {
     }
 
     @Override
-    public double evaluate() { // реализация виртуального метода «вычислить»
+    public double evaluate() { // реализация метода «вычислить»
         return 0.0;
+    }
+
+    @Override
+    public Expression transform(Transformer tr) {
+        return tr.transformVariable(this);
     }
 }

@@ -1,4 +1,4 @@
-public class Number extends Expression {
+public class Number implements Expression {
     private double value_; // само вещественное число
 
     public Number(double value) {
@@ -10,7 +10,12 @@ public class Number extends Expression {
     }
 
     @Override
-    public double evaluate() { // реализация виртуального метода «вычислить»
+    public double evaluate() { // реализация метода «вычислить»
         return value_;
+    }
+
+    @Override
+    public Expression transform(Transformer tr) {
+        return tr.transformNumber(this);
     }
 }

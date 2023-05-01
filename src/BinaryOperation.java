@@ -1,4 +1,4 @@
-public class BinaryOperation extends Expression {
+public class BinaryOperation implements Expression {
     public static final int PLUS = '+';
     public static final int MINUS = '-';
     public static final int DIV = '/';
@@ -28,7 +28,7 @@ public class BinaryOperation extends Expression {
     }
 
     @Override
-    public double evaluate() { // реализация виртуального метода «вычислить»
+    public double evaluate() { // реализация метода «вычислить»
         double left = left_.evaluate(); // вычисляем левую часть
         double right = right_.evaluate(); // вычисляем правую часть
         switch (op_) { // в зависимости от вида операции, складываем, вычитаем,
@@ -43,5 +43,10 @@ public class BinaryOperation extends Expression {
                 return left * right;
         }
         return 0.0;
+    }
+
+    @Override
+    public Expression transform(Transformer tr) {
+        return tr.transformBinaryOperation(this);
     }
 }
