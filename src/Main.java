@@ -6,17 +6,20 @@ public class Main {
         Expression e3 = new BinaryOperation(e1, BinaryOperation.DIV, e2);
         System.out.println(e3.evaluate());
 //------------------------------------------------------------------------------
-        Expression n32 = new Number(32.0);
-        Expression n16 = new Number(16.0);
-        Expression minus = new BinaryOperation(n32, BinaryOperation.MINUS, n16);
-        Expression callSqrt = new FunctionCall("sqrt", minus);
-        Expression n2 = new Number(2.0);
-        Expression mult = new BinaryOperation(n2, BinaryOperation.MUL, callSqrt);
-        Expression callAbs = new FunctionCall("abs", mult);
-        System.out.println(callAbs.evaluate());
+        Number n32 = new Number(32.0);
+        Number n16 = new Number(16.0);
+        BinaryOperation minus = new BinaryOperation(n32, BinaryOperation.MINUS, n16);
+        FunctionCall callSqrt = new FunctionCall("sqrt", minus);
+        Variable var = new Variable("var");
+        BinaryOperation mult = new BinaryOperation(var, BinaryOperation.MUL, callSqrt);
+        FunctionCall callAbs = new FunctionCall("abs", mult);
 //------------------------------------------------------------------------------
         CopySyntaxTree CST = new CopySyntaxTree();
         Expression newExpr = callAbs.transform(CST);
-        System.out.println(newExpr.evaluate());
+        System.out.println(newExpr.toString());
+//------------------------------------------------------------------------------
+        FoldConstants FC = new FoldConstants();
+        Expression newExpr1 = callAbs.transform(FC);
+        System.out.println(newExpr1.toString());
     }
 }

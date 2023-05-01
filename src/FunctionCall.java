@@ -30,4 +30,8 @@ public class FunctionCall implements Expression {
         return tr.transformFunctionCall(this);
     }
 
+    @Override
+    public String toString() {
+        return name_ + "(" + arg_.toString() + ")";
+    }
 }

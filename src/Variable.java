@@ -17,4 +17,9 @@ public class Variable implements Expression {
     public Expression transform(Transformer tr) {
         return tr.transformVariable(this);
     }
+
+    @Override
+    public String toString() {
+        return name_;
+    }
 }

@@ -49,4 +49,24 @@ public class BinaryOperation implements Expression {
     public Expression transform(Transformer tr) {
         return tr.transformBinaryOperation(this);
     }
+
+    @Override
+    public String toString() {
+        String op = "";
+        switch (op_) {
+            case PLUS:
+                op = "+";
+                break;
+            case MINUS:
+                op = "-";
+                break;
+            case DIV:
+                op = "/";
+                break;
+            case MUL:
+                op = "*";
+                break;
+        }
+        return left_.toString() + op + right_.toString();
+    }
 }

@@ -18,4 +18,9 @@ public class Number implements Expression {
     public Expression transform(Transformer tr) {
         return tr.transformNumber(this);
     }
+
+    @Override
+    public String toString() {
+        return Double.toString(value_);
+    }
 }
