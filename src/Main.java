@@ -15,5 +15,8 @@ public class Main {
         Expression callAbs = new FunctionCall("abs", mult);
         System.out.println(callAbs.evaluate());
 //------------------------------------------------------------------------------
+        CopySyntaxTree CST = new CopySyntaxTree();
+        Expression newExpr = callAbs.transform(CST);
+        System.out.println(newExpr.evaluate());
     }
 }
