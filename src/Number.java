@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Number implements Expression {
     private double value_; // само вещественное число
 
@@ -22,5 +24,18 @@ public class Number implements Expression {
     @Override
     public String toString() {
         return Double.toString(value_);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Number number = (Number) o;
+        return Double.compare(number.value_, value_) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value_);
     }
 }
